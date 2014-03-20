@@ -48,7 +48,7 @@ SYSTEM('Setting up redirects');
 // that should be accessible through http.
 var files =
 {   '/favicon.ico'      :'/resources/favicon.ico',
-    '/background.jpg'   :'/resources/background.ico',
+    '/background.jpg'   :'/resources/background.jpg',
     '/app.css'          :'/css/app.css',
 
     '/jquery.js'        :'/js/jquery.js',
@@ -60,14 +60,28 @@ var files =
     '/made.css'         :'/css/made.css'
 };
 
-// For every file in the list create an alias
-for (var file in files){
-    INFO('Creating alias for ' + file);
+/**
+ * @brief links a file to its path via uri call.
+ *
+ * This method is necessary because of closure
+ * issues when attempting to run the same code
+ * directly within a foreach loop.
+ *
+ * @param file The file to be linked
+ */
+function each(file)
+{
+    INFO('Creating alias for ' + file + ' to ' + files[file]);
     var callback = function(req,res)
     {
         res.sendfile(__dirname + files[file]);
     }
     app.get(file,callback);
+}
+
+// For every file in the list create an alias
+for (var file in files){
+    each(file);
 }
 
 /**
@@ -89,7 +103,7 @@ function log_ip(remote){
     // If the class B section does not match
     else if (pieces[1] != addr[1])
     {
-        WARNING('Request from different class B: ' + remote);
+        WARN('Request from different class B: ' + remote);
     }
     // If the class C section does not match
     else if (pieces[2] != addr[2])
