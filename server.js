@@ -57,7 +57,7 @@ var files =
     '/main.html'        :'/html/main.html',
     '/main.css'         :'/css/main.css',
     '/made.html'        :'/html/made.html',
-    '/made.css'         :'css/made.css'
+    '/made.css'         :'/css/made.css'
 };
 
 // For every file in the list create an alias
