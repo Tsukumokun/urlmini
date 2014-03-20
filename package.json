@@ -1,0 +1,14 @@
+{
+    "name"        :"urlmini",
+    "version"     :"0.0.1",
+    "description" :"url minification rest api",
+    "main"        :"server.js",
+    "author"      :"Christopher Kelley <tsukumokun(at)icloud.com>",
+    "license"     :"CC:BY-ND",
+    "dependencies":
+    {
+        "express" :"latest",
+
+        "colors"  :"latest"
+    }
+}
