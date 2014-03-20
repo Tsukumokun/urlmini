@@ -68,100 +68,98 @@ function format_message(message)
     // Trim out the important data from the line (file and line number)
     line = line.substring(line.lastIndexOf('/')+1,line.lastIndexOf(':'));
     // Return the message formatted with the information
-    return pad_string('<' + line + '>',15) + ' - ' + message;
+    return str_resize('<' + line + '>',15) + ' - ' + message;
 }
 
-// Make these functions visible outside of this package
-module.exports =
+
+/**
+ * @brief This function implements a trace log
+ *        for output of error messages.
+ *
+ * @param message The input message to trace.
+ */
+ERROR  = function(message)
 {
-    /**
-     * @brief This function implements a trace log
-     *        for output of error messages.
-     *
-     * @param message The input message to trace.
-     */
-    ERROR  : function(message)
-    {
-        console.log(('ERROR  : ' + format_message(message)).red);
-    },
-    /**
-     * @brief This function implements a trace log
-     *        for output of severe error messages.
-     *
-     * @param message The input message to trace.
-     */
-    SEVERE : function(message)
-    {
-        console.log(('SEVERE : ' + format_message(message)).magenta);
-    },
-    /**
-     * @brief This function implements a trace log
-     *        for output of warning messages.
-     *
-     * @param message The input message to trace.
-     */
-    WARN   : function(message)
-    {
-        console.log(('WARN   : ' + format_message(message)).yellow);
-    },
-    /**
-     * @brief This function implements a trace log
-     *        for output of info messages.
-     *
-     * @param message The input message to trace.
-     */
-    INFO   : function(message)
-    {
-        console.log(('INFO   : ' + format_message(message)).blue);
-    },
-    /**
-     * @brief This function implements a trace log
-     *        for output of system messages.
-     *
-     * @param message The input message to trace.
-     */
-    SYSTEM : function(message)
-    {
-        console.log(('SYSTEM : ' + format_message(message)).cyan);
-    },
-    /**
-     * @brief This function implements a trace log
-     *        for output of note messages.
-     *
-     * @param message The input message to trace.
-     */
-    NOTE   : function(message)
-    {
-        console.log(('NOTE   : ' + format_message(message)).green);
-    },
-    /**
-     * @brief This function implements a trace log
-     *        for output of todo messages.
-     *
-     * @param message The input message to trace.
-     */
-    TODO   : function(message)
-    {
-        console.log(('TODO   : ' + format_message(message)).underline.white);
-    },
-    /**
-     * @brief This function implements a trace log
-     *        for output of xxx todo messages.
-     *
-     * @param message The input message to trace.
-     */
-    XXX    : function(message)
-    {
-        console.log(('XXX    : ' + format_message(message)).underline.magenta);
-    },
-    /**
-     * @brief This function implements a trace log
-     *        for output of text messages.
-     *
-     * @param message The input message to trace.
-     */
-    TEXT   : function(message)
-    {
-        console.log(('TEXT   : ' + format_message(message)).grey);
-    }
+    console.log(('ERROR  : ' + format_message(message)).red);
 }
+/**
+ * @brief This function implements a trace log
+ *        for output of severe error messages.
+ *
+ * @param message The input message to trace.
+ */
+SEVERE = function(message)
+{
+    console.log(('SEVERE : ' + format_message(message)).magenta);
+}
+/**
+ * @brief This function implements a trace log
+ *        for output of warning messages.
+ *
+ * @param message The input message to trace.
+ */
+WARN   = function(message)
+{
+    console.log(('WARN   : ' + format_message(message)).yellow);
+}
+/**
+ * @brief This function implements a trace log
+ *        for output of info messages.
+ *
+ * @param message The input message to trace.
+ */
+INFO   = function(message)
+{
+    console.log(('INFO   : ' + format_message(message)).blue);
+}
+/**
+ * @brief This function implements a trace log
+ *        for output of system messages.
+ *
+ * @param message The input message to trace.
+ */
+SYSTEM = function(message)
+{
+    console.log(('SYSTEM : ' + format_message(message)).cyan);
+}
+/**
+ * @brief This function implements a trace log
+ *        for output of note messages.
+ *
+ * @param message The input message to trace.
+ */
+NOTE   = function(message)
+{
+    console.log(('NOTE   : ' + format_message(message)).green);
+}
+/**
+ * @brief This function implements a trace log
+ *        for output of todo messages.
+ *
+ * @param message The input message to trace.
+ */
+TODO   = function(message)
+{
+    console.log(('TODO   : ' + format_message(message)).underline.white);
+}
+/**
+ * @brief This function implements a trace log
+ *        for output of xxx todo messages.
+ *
+ * @param message The input message to trace.
+ */
+XXX    = function(message)
+{
+    console.log(('XXX    : ' + format_message(message)).underline.magenta);
+}
+/**
+ * @brief This function implements a trace log
+ *        for output of text messages.
+ *
+ * @param message The input message to trace.
+ */
+TEXT   = function(message)
+{
+    console.log(('TEXT   : ' + format_message(message)));
+}
+
