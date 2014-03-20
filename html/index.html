@@ -1,0 +1,157 @@
+<!--
+ 'URLmini' - is a rest api service for url minification
+
+ Copyright (C) 2014 Christopher Kelley <tsukumokun(at)icloud.com>
+
+ This work is licensed under the
+ Creative Commons Attribution-NoDerivatives 4.0 International
+ License. To view a copy of this license, visit
+ http://creativecommons.org/licenses/by-nc-nd/4.0/deed.en_US.
+
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+-->
+
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8" />
+        <title>URLmini</title>
+
+        <link rel="stylesheet" href="app.css" />
+
+        <script src="jquery.js"></script>
+        <script src="backstretch.jq.js"></script>
+        <script>
+            $(function(){
+                $.backstretch('background.jpg');
+            });
+        </script>
+    </head>
+    <body>
+        <section id="content">
+            <!-- PLACEHOLDER FOR CONTENT -->
+        </section>
+        <script>
+/**
+ * @brief parses get variables from the url.
+ *
+ * @return the parse variables as a list.
+ */
+function getUrlVars() {
+    var vars  = {};
+    var parts =
+        window.location.href.replace(
+            /[?&]+([^=&]+)=([^&]*)/gi,
+            function(m,key,value) {
+                vars[key] = value;
+            }
+        );
+    return vars;
+}
+
+/**
+ * @brief loads the specified page and
+ *        returns its contents.
+ *
+ * @param href The page to be loaded.
+ *
+ * @return the contents of the specified page.
+ */
+function loadPage( href )
+{
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.open("GET", href, false);
+    xmlhttp.send();
+    return xmlhttp.responseText;
+}
+
+/**
+ * @brief loads the specified css and
+ *        places a link for it in the head tag.
+ *
+ * @param path Location of the css file to load.
+ */
+function loadCss( path )
+{
+    var style   = document.createElement('link');
+    style.rel   = 'stylesheet';
+    style.type  = 'text/css';
+    style.href  = path;
+    document.getElementsByTagName('head')[0].appendChild(style);
+}
+
+/**
+ * @brief Selects all of the text in the specified container.
+ *
+ * @param containerid Id of the container to select text in.
+ */
+function selectText( containerid )
+{
+    if (document.selection)
+    {
+        var range = document.body.createTextRange();
+        range.moveToElementText(document.getElementById(containerid));
+        range.select();
+    }
+    else if (window.getSelection)
+    {
+        var range = document.createRange();
+        range.selectNode(document.getElementById(containerid));
+        window.getSelection().addRange(range);
+    }
+}
+
+/**
+ * @brief function to be called when the page is loaded.
+ *
+ * This function holds all of the page logic and will be
+ * called only when the page has fully loaded.
+ */
+function load()
+{
+    // Get the url variables
+    var vars = getUrlVars();
+
+    // Store the content element so it does not need
+    // to be searched for again.
+    var content = document.getElementById('content');
+
+    // If made was specified, show the url defined in made
+    if (vars['made'])
+    {
+        // Load made page and its css.
+        content.innerHTML = loadPage('made.html');
+        document.getElementById('display').innerHTML =
+            window.location.protocol+'//'
+            +window.location.host
+            +'/'+vars['made'];
+
+        loadCss('made.css');
+    }
+    // If made is not made, display the main page
+    else
+    {
+        // Load the main page and its css
+        content.innerHTML = loadPage('main.html');
+        loadCss('main.css');
+
+        // If there was an error set, display the error message
+        if (vars['error'])
+        {
+            $('#content').append('<article id="error">The URL you entered is not valid!</article>');
+            $('#submit').css('border-radius','0px');
+        }
+    }
+}
+// When the page is loaded, call the load function
+$(function(){
+    load();
+});
+        </script>
+
+        <div id='author'> 津雲          </div>
+        <div id='title'>  URL Minifier </div>
+    </body>
+</html>
