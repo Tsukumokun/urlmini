@@ -1,0 +1,91 @@
+/*******************************************************************
+ * 'URLmini' - is a rest api service for url minification
+ *
+ * Copyright (C) 2014 Christopher Kelley <tsukumokun(at)icloud.com>
+ *
+ * This work is licensed under the
+ * Creative Commons Attribution-NoDerivatives 4.0 International
+ * License. To view a copy of this license, visit
+ * http://creativecommons.org/licenses/by-nc-nd/4.0/deed.en_US.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ ********************************************************************/
+
+/* Use raleway as the primary font for this app */
+@import url(http://fonts.googleapis.com/css?family=Raleway:300);
+
+/* Specify page defaults for all tags */
+*
+{
+    color:#333;
+    margin  :0;
+    border  :0;
+    padding :0;
+    font-family: Raleway, sans-serif;
+}
+
+/* Change the page selection to be a pink color */
+::selection
+{
+    background: #FFB7B7;
+}
+::-moz-selection
+{
+    background: #FFB7B7;
+}
+
+/* Make the author name nice looking */
+#author
+{
+    position: fixed;
+    bottom:10px;
+    right:10px;
+    color:white;
+    font-size:14px;
+    font-family:arial;
+
+    -ms-writing-mode: tb-lr;
+    -webkit-writing-mode: vertical-lr;
+    -moz-writing-mode: vertical-lr;
+    -ms-writing-mode: vertical-lr;
+    writing-mode: vertical-lr;
+}
+
+/* Make the title nice looking */
+#title
+{
+    font-size:20px;
+    position:fixed;
+    top:10px;
+    left:10px;
+}
+
+
+/* Specify default display and content appearance */
+#content
+{
+    background: rgba(240,240,240,0.5);
+    width: 80%;
+    left: 10%;
+    position: absolute;
+    text-align: center;
+    top: 50%;
+    font-size: 30px;
+
+    border-radius: 10px;
+    margin-top: -45px;
+    box-sizing: border-box;
+
+    box-shadow: 0px 0px 25px rgba(30,30,30,0.3);
+}
+
+#display
+{
+    background: rgba(255,255,255,0.9);
+    padding: 20px;
+    margin: 10px;
+    border-radius: 7px;
+    cursor:pointer;
+}

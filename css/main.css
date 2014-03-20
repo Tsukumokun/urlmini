@@ -1,0 +1,53 @@
+/*******************************************************************
+ * 'URLmini' - is a rest api service for url minification
+ *
+ * Copyright (C) 2014 Christopher Kelley <tsukumokun(at)icloud.com>
+ *
+ * This work is licensed under the
+ * Creative Commons Attribution-NoDerivatives 4.0 International
+ * License. To view a copy of this license, visit
+ * http://creativecommons.org/licenses/by-nc-nd/4.0/deed.en_US.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+ ********************************************************************/
+
+/* Remove the default outline from the editable area */
+#display
+{
+    outline:none;
+}
+
+/* Make the placeholder text be less apparent */
+#display span
+{
+    color:rgba(200,200,200,0.7);
+}
+
+/* Style the submit button */
+#submit
+{
+    padding: 10px;
+    padding-bottom: 15px;
+    background: rgba(255,255,255,0.3);
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+    cursor:pointer;
+    transition:background 300ms;
+}
+
+#submit:hover
+{
+    background: rgba(255,255,255,0.5);
+}
+
+/* Style the error tag for when it exists */
+#error
+{
+    padding: 10px;
+    color: rgba(172, 37, 23,0.9);
+    background: rgba(231, 76, 60,0.7);
+    border-bottom-right-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
