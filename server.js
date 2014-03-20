@@ -47,26 +47,28 @@ SYSTEM('Setting up redirects');
 // For security reasons only include files
 // that should be accessible through http.
 var files =
-[   '/favicon.ico',
-    '/app.css',
-    '/background.jpg',
-    '/jquery.js',
-    '/backstretch.jq.js',
-    '/main.html',
-    '/main.css',
-    '/made.html',
-    '/made.css'
-];
+{   '/favicon.ico'      :'/resources/favicon.ico',
+    '/background.jpg'   :'/resources/background.ico',
+    '/app.css'          :'/css/app.css',
+
+    '/jquery.js'        :'/js/jquery.js',
+    '/backstretch.jq.js':'/js/backstretch.jq.js',
+
+    '/main.html'        :'/html/main.html',
+    '/main.css'         :'/css/main.css',
+    '/made.html'        :'/html/made.html',
+    '/made.css'         :'css/made.css'
+};
 
 // For every file in the list create an alias
-files.forEach(function(file){
+for (var file in files){
     INFO('Creating alias for ' + file);
     var callback = function(req,res)
     {
-        res.sendfile(__dirname + file);
+        res.sendfile(__dirname + files[file]);
     }
     app.get(file,callback);
-})
+}
 
 /**
  * @brief logs the given ip based on its level.
