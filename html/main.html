@@ -22,21 +22,3 @@
 <article id="submit">
 Submit
 </article>
-
-<script>
-$(function(){
-    // When the text area is selected remove what was
-    // previously there for ease of access.
-    $('#display').click(function(){
-        this.innerHTML = "";
-    });
-
-    // When the submit button is clicked redirect the page
-    // to request the server make the shortened url.
-    $('#submit').click(function(){
-        window.location = window.location.protocol+'//'
-        +window.location.host
-        +'/?make='+$('#display').html();
-    });
-});
-</script>

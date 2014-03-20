@@ -129,6 +129,12 @@ function load()
             +'/'+vars['made'];
 
         loadCss('made.css');
+
+        // When the display is clicked highlight all
+        // of the text for ease of access.
+        $('#display').click(function(){
+            selectText('display');
+        });
     }
     // If made is not made, display the main page
     else
@@ -136,6 +142,20 @@ function load()
         // Load the main page and its css
         content.innerHTML = loadPage('main.html');
         loadCss('main.css');
+
+        // When the text area is selected remove what was
+        // previously there for ease of access.
+        $('#display').click(function(){
+            this.innerHTML = "";
+        });
+
+        // When the submit button is clicked redirect the page
+        // to request the server make the shortened url.
+        $('#submit').click(function(){
+            window.location = window.location.protocol+'//'
+            +window.location.host
+            +'/?make='+$('#display').html();
+        });
 
         // If there was an error set, display the error message
         if (vars['error'])
