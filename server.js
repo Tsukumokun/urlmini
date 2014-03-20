@@ -117,7 +117,7 @@ app.get('/',function(req,res){
     // Otherwise send the index file.
     else
     {
-        res.sendfile(__dirname + '/index.html');
+        res.sendfile(__dirname + '/html/index.html');
     }
 });
 
