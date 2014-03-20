@@ -9,6 +9,8 @@
     {
         "express" :"latest",
 
-        "colors"  :"latest"
+        "colors"  :"latest",
+
+        "ip"      :"latest"
     }
 }
