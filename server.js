@@ -179,6 +179,6 @@ function make(req,res)
  */
 function go(req,res)
 {
-    trace.INFO('Searching map for id: ' + req);
+    INFO('Searching map for id: ' + req);
     res.redirect(map[req]);
 }
