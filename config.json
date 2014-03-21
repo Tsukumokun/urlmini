@@ -1,0 +1,20 @@
+{
+    "port":3000,
+    "files":{
+        "/favicon.ico"      :"/resources/favicon.ico",
+        "/background.jpg"   :"/resources/background.jpg",
+        "/app.css"          :"/css/app.css",
+
+        "/jquery.js"        :"/js/jquery.js",
+        "/backstretch.jq.js":"/js/backstretch.jq.js",
+
+        "/main.html"        :"/html/main.html",
+        "/main.css"         :"/css/main.css",
+        "/made.html"        :"/html/made.html",
+        "/made.css"         :"/css/made.css"
+    },
+    "tracing":{
+        "log_ip":true
+    },
+    "start_uid_at":3000
+}
