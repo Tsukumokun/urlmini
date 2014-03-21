@@ -15,6 +15,11 @@
 // Include support files
 require('./support/trace.js');
 
+// Obtain configuration information
+var config = require('./config.json');
+
+
+
 //////////////////////////////////////////////////
 ///// GET SYSTEM INFORMATION
 SYSTEM('Aquiring system information');
@@ -22,7 +27,10 @@ SYSTEM('Aquiring system information');
 var ip     = require('ip'),
     addr   = ip.address().split('.');
 
-INFO('Local IPv4: ' + ip.address());
+if (config['tracing']['log_ip'])
+{
+    INFO('Local IPv4: ' + ip.address());
+}
 
 //////////////////////////////////////////////////
 ///// SERVER CONNECTION
@@ -31,7 +39,7 @@ SYSTEM('Setting up server');
 var
     app     = require('express')(),
     server  = require('http').createServer(app),
-    port    = 3000
+    port    = config['port'] || 3000;
 
 SYSTEM('Setup to listen on port ' + port);
 server.listen(port,function(){
@@ -46,19 +54,8 @@ SYSTEM('Setting up redirects');
 // Create a list of all files needed.
 // For security reasons only include files
 // that should be accessible through http.
-var files =
-{   '/favicon.ico'      :'/resources/favicon.ico',
-    '/background.jpg'   :'/resources/background.jpg',
-    '/app.css'          :'/css/app.css',
-
-    '/jquery.js'        :'/js/jquery.js',
-    '/backstretch.jq.js':'/js/backstretch.jq.js',
-
-    '/main.html'        :'/html/main.html',
-    '/main.css'         :'/css/main.css',
-    '/made.html'        :'/html/made.html',
-    '/made.css'         :'/css/made.css'
-};
+var files = config['files'] ||
+{   '/favicon.ico' : '/resources/favicon.ico'   };
 
 /**
  * @brief links a file to its path via uri call.
@@ -90,6 +87,7 @@ for (var file in files){
  * @param ip Address of the remote client.
  */
 function log_ip(remote){
+    if (!config['tracing']['log_ip'])return;
     // Attempt to notify if there is a request
     // from a strange ip.
 
@@ -145,7 +143,7 @@ app.use(function(req, res, next){
 // Variables used to store the urls
 var
     map  = { },
-    uid = 3000;
+    uid = config['start_uid_at'] || 0;
 
 /**
  * @brief Checks if the passed string represents
